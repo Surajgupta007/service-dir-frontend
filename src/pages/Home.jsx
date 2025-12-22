@@ -6,7 +6,7 @@ import ServiceCard from '../components/ServiceCard';
 import Pagination from '../components/Pagination';
 
 // Try to import API_URL, but fallback if it doesn't exist
-let API_URL = 'https://service-dir-backend.onrender.com'
+let API_URL = 'https://service-dir-backend.onrender.com/api'
 try {
   const config = require('../config');
   if (config.API_URL) API_URL = config.API_URL;

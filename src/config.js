@@ -4,5 +4,5 @@
 const isProduction = window.location.hostname !== 'localhost';
 
 export const API_URL = isProduction 
-  ? 'https://service-dir-backend.onrender.com' // We will update this later after deployment
+  ? 'https://service-dir-backend.onrender.com/api' // We will update this later after deployment
   : 'http://localhost:5001/api';
