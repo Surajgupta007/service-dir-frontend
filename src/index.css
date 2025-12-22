@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 1. KEY SETTINGS FOR LAYOUT */
+html, body {
+  height: 100%;           /* Ensures the page takes up full vertical space */
+  overflow-x: hidden;     /* Prevents horizontal scrollbar caused by w-screen footer */
+}
+
+#root {
+  min-height: 100%;       /* Ensures the React app container fills the window */
+  display: flex;          /* Helps with the flex layout in App.jsx */
+  flex-direction: column;
+}
+
+/* 2. ANIMATIONS (Kept from your code) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* 3. UTILITIES (Kept from your code) */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 4. FONTS */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Note: I removed the '*' selector because @tailwind base handles resets automatically */
