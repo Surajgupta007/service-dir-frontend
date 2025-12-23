@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { X, MapPin, DollarSign, Tag, Phone, FileText, Briefcase } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
+const config = require('../config');
+
 const AddServiceModal = ({ isOpen, onClose }) => {
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -31,7 +33,7 @@ const AddServiceModal = ({ isOpen, onClose }) => {
         providerId: user.id, // Link this service to the logged-in user
       };
 
-      const response = await fetch('http://localhost:5001/api/services', {
+      const response = await fetch(`${config.API_URL}/services`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

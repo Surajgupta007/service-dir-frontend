@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { X, Calendar, CheckCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
+const config = require('../config');
+
 const BookingModal = ({ isOpen, onClose, service }) => {
   const { user } = useAuth();
   const [date, setDate] = useState('');
@@ -19,7 +21,7 @@ const BookingModal = ({ isOpen, onClose, service }) => {
         date: date
       };
 
-      const response = await fetch('http://localhost:5001/api/bookings', {
+      const response = await fetch(`${config.API_URL}/bookings`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

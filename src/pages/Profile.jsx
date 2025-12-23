@@ -3,6 +3,8 @@ import { useAuth } from '../context/AuthContext';
 import { Trash2, MapPin, Calendar, Check, X, Briefcase, Clock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
+const config = require('../config');
+
 const Profile = () => {
   const { user } = useAuth();
   const [myServices, setMyServices] = useState([]);
@@ -22,7 +24,7 @@ const Profile = () => {
         setLoading(true);
         // 1. If Business, fetch their listings
         if (user.role === 'business') {
-          const servicesRes = await fetch(`http://localhost:5001/api/services?providerId=${user.id}`);
+          const servicesRes = await fetch(`${config.API_URL}/services?providerId=${user.id}`);
           const servicesData = await servicesRes.json();
           setMyServices(servicesData);
           setActiveTab('services'); // Default to services for business owners
@@ -30,7 +32,7 @@ const Profile = () => {
 
         // 2. Fetch Bookings (For both Customers and Businesses)
         // We pass the role so the backend knows whether to search by customerId or providerId
-        const bookingsRes = await fetch(`http://localhost:5001/api/bookings/${user.id}?role=${user.role}`);
+        const bookingsRes = await fetch(`${config.API_URL}/bookings/${user.id}?role=${user.role}`);
         const bookingsData = await bookingsRes.json();
         setMyBookings(bookingsData);
 
@@ -48,7 +50,7 @@ const Profile = () => {
   const handleDeleteService = async (serviceId) => {
     if (!window.confirm("Are you sure you want to delete this listing?")) return;
     try {
-      const res = await fetch(`http://localhost:5001/api/services/${serviceId}`, { method: 'DELETE' });
+      const res = await fetch(`${config.API_URL}/services/${serviceId}`, { method: 'DELETE' });
       if (res.ok) {
         setMyServices(myServices.filter(s => s._id !== serviceId));
       }
@@ -60,7 +62,7 @@ const Profile = () => {
   // UPDATE BOOKING STATUS (Business Only)
   const handleStatusUpdate = async (bookingId, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:5001/api/bookings/${bookingId}`, {
+      const res = await fetch(`${config.API_URL}/bookings/${bookingId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus })
