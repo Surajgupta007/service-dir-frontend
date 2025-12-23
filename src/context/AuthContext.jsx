@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext(null);
-const config = require('../config');
+import API_URL from '../config';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
   // 2. REGISTER ACTION
   const registerAction = async (formData) => {
     try {
-      const response = await fetch(`${config.API_URL}/auth/register`, {
+      const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
   // 4. LOGIN ACTION (UPDATED: Now connects to backend)
   const loginAction = async (formData) => {
     try {
-      const response = await fetch(`${config.API_URL}/auth/login`, {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

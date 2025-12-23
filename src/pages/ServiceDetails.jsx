@@ -5,7 +5,7 @@ import BookingModal from '../components/BookingModal';
 import ReviewModal from '../components/ReviewModal'; // Import the Review Modal
 import { useAuth } from '../context/AuthContext';
 
-const config = require('../config');
+import API_URL from '../config'
 
 const ServiceDetails = () => {
   const { id } = useParams();
@@ -25,13 +25,13 @@ const ServiceDetails = () => {
     const fetchData = async () => {
       try {
         // 1. Fetch Service Details
-        const serviceRes = await fetch(`${config.API_URL}/services/${id}`);
+        const serviceRes = await fetch(`${API_URL}/services/${id}`);
         if (!serviceRes.ok) throw new Error('Service not found');
         const serviceData = await serviceRes.json();
         setService(serviceData);
 
         // 2. Fetch Reviews for this service
-        const reviewsRes = await fetch(`${config.API_URL}/reviews/${id}`);
+        const reviewsRes = await fetch(`${API_URL}/reviews/${id}`);
         if (reviewsRes.ok) {
             const reviewsData = await reviewsRes.json();
             setReviews(reviewsData);

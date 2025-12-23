@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { X, Star } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
-const config = require('../config');
+import API_URL from '../config'
 
 const ReviewModal = ({ isOpen, onClose, serviceId, onReviewAdded }) => {
   const { user } = useAuth();
@@ -30,7 +30,7 @@ const ReviewModal = ({ isOpen, onClose, serviceId, onReviewAdded }) => {
         comment
       };
 
-      const response = await fetch(`${config.API_URL}/reviews`, {
+      const response = await fetch(`${API_URL}/reviews`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

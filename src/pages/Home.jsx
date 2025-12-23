@@ -4,15 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import ServiceCard from '../components/ServiceCard';
 import Pagination from '../components/Pagination';
-
-// Try to import API_URL, but fallback if it doesn't exist
-let API_URL = 'https://service-dir-backend.onrender.com/api'
-try {
-  const config = require('../config');
-  if (config.API_URL) API_URL = config.API_URL;
-} catch (e) {
-  // Config not found, using default localhost
-}
+import API_URL from '../config'
 
 // UPDATED CATEGORY IMAGES
 const categoryImages = {
